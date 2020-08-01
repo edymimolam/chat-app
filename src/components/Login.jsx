@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export default function ({ loginHandler }) {
+export default function Login({ loginHandler }) {
   const [nickname, setNickname] = useState("");
   const [error, setError] = useState("");
   const nicknameInput = useRef();

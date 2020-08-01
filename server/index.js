@@ -8,16 +8,17 @@ app.use(express.json());
 
 const rooms = [];
 
-app.get("/", (req, res) => {
-  res.send("hello there");
+app.get("/:id", ({ params: { id } }, res) => {
+  const room = getRoom(id);
+  res.json({ room });
 });
 
 app.post("/", (req, res) => {
   let { roomId, nickname } = req.body;
   if (!roomId) roomId = createRoom();
-  joinToRoom(roomId, nickname);
+  const user = joinToRoom(roomId, nickname);
 
-  res.send({ roomId });
+  res.send({ user, roomId });
 });
 
 function createRoom() {
@@ -31,13 +32,20 @@ function createRoom() {
 }
 
 function joinToRoom(roomId, nickname) {
-  const room = rooms.find((room) => room.id === roomId);
+  const room = getRoom(roomId);
+
   const user = {
     id: uuidv4(),
     nickname,
   };
   room.users.push(user);
-  console.log(room, rooms);
+  return user;
+}
+
+function getRoom(roomId) {
+  const room = rooms.find((room) => room.id === roomId);
+  if (!room) throw new Error(`can't  get room with ID ${roomId}`);
+  return room;
 }
 
 http.listen(3210, () => {
