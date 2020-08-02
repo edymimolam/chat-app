@@ -2,6 +2,6 @@
 
 In the project directory, you can run:
 
-``` yarn react ```  to run react server.
-``` yarn server ``` to run express server.
-``` yarn start ```  to run both.
+`yarn react` to run react server. <br />
+`yarn server` to run express server. <br />
+`yarn start` to run both. <br />

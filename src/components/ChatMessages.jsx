@@ -1,27 +1,27 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-export default function ChatMessages() {
+export default function ChatMessages({ user, messages }) {
+  const messagesRef = useRef();
+
+  useEffect(() =>
+    messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight)
+  );
+
   return (
-    <div className="messages-container">
+    <div className="messages-container" ref={messagesRef}>
       <ul className="messages">
-        <li className="message">
-          <span className="message-author">Michael</span>
-          <span className="message-text">Hi</span>
-          <span className="message-time">14:86</span>
-        </li>
-        <li className="message">
-          <span className="message-author">Michael</span>
-          <span className="message-text">
-            You think water moves fast? You should see ice. It moves like it has
-            a mind. Like it knows it
-          </span>
-          <span className="message-time">14:86</span>
-        </li>
-        <li className="message my-message">
-          <span className="message-author">Me</span>
-          <span className="message-text">You think water moves fast?</span>
-          <span className="message-time">14:86</span>
-        </li>
+        {messages.map((msg, i) => (
+          <li
+            key={i}
+            className={
+              msg.author.id === user.id ? "message my-message" : "message"
+            }
+          >
+            <span className="message-author">{msg.author.nickname}</span>
+            <span className="message-text">{msg.text}</span>
+            <span className="message-time">{msg.time}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );

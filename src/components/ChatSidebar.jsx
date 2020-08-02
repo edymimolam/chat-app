@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function ChatSidebar({ users }) {
-  console.log(users);
   return (
     <div className="chat-sidebar">
       <ul className="users-list">
