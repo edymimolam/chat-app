@@ -1,19 +1,14 @@
 import React from "react";
 import ChatSidebar from "./ChatSidebar";
 import ChatMessages from "./ChatMessages";
+import ChatMessageInput from "./ChatMessageInput";
 
-export default function ChatContainer({ room }) {
+export default function ChatContainer({ users, sendMessage, messages, user }) {
   return (
     <div className="chat-container">
-      <ChatSidebar users={room.users} />
-      <ChatMessages />
-      <form className="new-message">
-        <input
-          type="text"
-          className="new-message-input"
-          placeholder="Write a mesage..."
-        />
-      </form>
+      <ChatSidebar users={users} />
+      <ChatMessages messages={messages} user={user} />
+      <ChatMessageInput sendMessage={sendMessage} />
     </div>
   );
 }

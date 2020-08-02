@@ -88,6 +88,7 @@ input:focus {
 }
 .messages-container {
   padding: 2rem;
+  overflow: scroll;
 }
 .messages {
   list-style-type: none;
